@@ -10,24 +10,22 @@ fi
 
 pushd $DIRNAME
 
-wget "$JENKINS/job/pyparted-x86_64/lastSuccessfulBuild/artifact/coverage-report.log" -O coverage-report.log 2>/dev/null
-if [ "$?" -ne "0" ]; then
-    echo "Download failed, exitting ..."
-    exit 2
-fi
+for f in ".coverage" \
+        "coverage-report.log"; do
 
-wget "$JENKINS/job/pyparted-x86_64/lastSuccessfulBuild/artifact/.coverage" -O .coverage 2>/dev/null
-if [ "$?" -ne "0" ]; then
-    echo "Download failed, exitting ..."
-    exit 2
-fi
-
+    tgt=`basename $f`
+    wget "$JENKINS/job/pyparted-x86_64/lastSuccessfulBuild/artifact/$f" -O "$tgt" 2>/dev/null
+    if [ "$?" -ne "0" ]; then
+        echo "Downloading $f failed ..."
+        git checkout "$tgt"
+    fi
+done
 
 DATE=`date --rfc-3339=date`
 DIFF=`git diff`
 # changes detected
 if [ -n "$DIFF" ]; then
-    git commit -a -m "Updated coverage results from $DATE"
+    git commit -a -m "Updated test results from $DATE"
     git tag "pyparted-$DATE"
     git push --tags origin master
 fi

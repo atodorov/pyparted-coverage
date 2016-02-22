@@ -6,9 +6,9 @@ build/lib.linux-x86_64-2.7/parted/cachedlist.py      38     15      2      1    
 build/lib.linux-x86_64-2.7/parted/constraint.py      61     14     36      2    79%
 build/lib.linux-x86_64-2.7/parted/decorators.py      16      2      0      0    88%
 build/lib.linux-x86_64-2.7/parted/device.py         131     61     14      2    52%
-build/lib.linux-x86_64-2.7/parted/disk.py           225    110     82      4    44%
+build/lib.linux-x86_64-2.7/parted/disk.py           225    101     82      6    48%
 build/lib.linux-x86_64-2.7/parted/filesystem.py      50     28     14      0    38%
 build/lib.linux-x86_64-2.7/parted/geometry.py        81     38     26      3    50%
 build/lib.linux-x86_64-2.7/parted/partition.py      121     49     40      8    57%
 -----------------------------------------------------------------------------------
-TOTAL                                               973    350    262     28    61%
+TOTAL                                               973    341    262     30    62%
